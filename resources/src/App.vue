@@ -1,10 +1,18 @@
 <template>
-    <nav class="nav">
-    <router-link to="/">Productos</router-link>
-    <router-link to="/historial">Historial</router-link>
-    <router-link to="/admin">Administrador</router-link>
-    </nav>
+
+    <header>
+        <nav class="nav">
+            <router-link to="/">Productos</router-link>
+            <router-link to="/historial">Historial</router-link>
+            <router-link to="/admin">Administrador</router-link>
+        </nav>
+    </header>
+
     <router-view/>
+
+    <footer>
+        <p>Todos los derechos reservados Sebastian Ortiz &copy;</p>
+    </footer>
 </template>
 
 <script>
@@ -46,4 +54,12 @@ html {
     }
 }
 
+footer{
+    background-color:$azul;
+    padding: .2rem 3rem;
+    text-align:right;
+    p{
+        color:$blanco;
+    }
+}
 </style>
