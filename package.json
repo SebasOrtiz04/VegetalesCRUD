@@ -12,6 +12,10 @@
         "postcss": "^8.1.14",
         "vite": "^4.0.0",
         "vue": "^3.2.47",
-        "vue-loader": "^17.0.1"
+        "vue-loader": "^17.0.1",
+        "vue-router": "^4.1.6"
+    },
+    "dependencies": {
+        "vue-route": "^1.5.1"
     }
 }
