@@ -1,6 +1,6 @@
 <template>
 
-    <main>
+    <main class="movimiento">
         
         <aside>
             <p>Disponible:<span>{{ disponible.actual }}</span></p>
@@ -90,7 +90,7 @@ export default {
 @import "../scss/_globales.scss";
 @import "../scss/_mixins.scss";
 
-main{
+main.movimiento{
     display:flex;
     justify-content: space-between;
     .contenedor-formulario{

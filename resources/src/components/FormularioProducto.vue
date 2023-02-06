@@ -62,17 +62,7 @@ export default {
                     id:2,
                     nombre:'Piezas'
                 },
-            ],
-            tipos:[
-                {
-                    id:0,
-                    nombre:'Ingreso '
-                },
-                {
-                    id:1,
-                    nombre:'Egreso'
-                },
-            ],
+            ]
         }
     }
 }
