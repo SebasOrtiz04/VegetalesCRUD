@@ -1,7 +1,8 @@
 <template>
     <nav class="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/admin">admin</router-link>
+    <router-link to="/">Productos</router-link>
+    <router-link to="/admin">Historial</router-link>
+    <router-link to="/admin">Administrador</router-link>
     </nav>
     <router-view/>
 </template>
@@ -15,16 +16,12 @@ export default {
 <style lang="scss">
 
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;900&display=swap');
-
-
-$azul : #2a3295;
-$blanco: #dedaed;
-$negro:#181632;
-$verde:#64d446;
+@import "scss/_variables.scss";
 
 html {
   box-sizing: border-box;
   font-family: 'Mulish', sans-serif;
+  background: $blanco;
 }
 *, *:before, *:after {
   box-sizing: inherit;
