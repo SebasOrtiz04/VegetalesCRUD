@@ -29,7 +29,11 @@
                     <td>{{ producto.cantidad}}</td>
                     <td>{{ producto.unidad}}</td>
                     <td>
-                        <Boton titulo="Movimientos"/>
+                        <Boton titulo="Movimientos" 
+                        @click="$router.push(
+                            {path:'/historial/'+producto.id}
+                            )"
+                        />
                     </td>
                 </tr>
             </tbody>
@@ -59,7 +63,7 @@ export default {
                     unidad:'kg'
                 },
                 {
-                    id:0,
+                    id:1,
                     nombre:'Lechuga',
                     descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
                     fecha:'00-00-00',
@@ -67,7 +71,7 @@ export default {
                     unidad:'kg'
                 },
                 {
-                    id:0,
+                    id:2,
                     nombre:'Lechuga',
                     descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
                     fecha:'00-00-00',
@@ -75,7 +79,7 @@ export default {
                     unidad:'kg'
                 },
                 {
-                    id:0,
+                    id:3,
                     nombre:'Lechuga',
                     descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
                     fecha:'00-00-00',
@@ -122,24 +126,4 @@ export default {
     }
 }
 
-
-table{
-    margin: 0 auto;
-    border-collapse: collapse;
-    thead{
-        background-color: $azul;
-        color:$blanco;
-        text-transform:uppercase;
-    }
-    th, td{
-        padding:1rem;
-        text-align:center;
-    }
-
-    tbody{
-        tr{
-            border-bottom:1px solid $azul;
-        }
-    }
-}
 </style>

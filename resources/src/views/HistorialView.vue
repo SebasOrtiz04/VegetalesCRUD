@@ -1,31 +1,27 @@
 <template>
-
     <main class="main">
         <div class="botones">
-            <Boton titulo="Nueva entrada" @click="$router.push({path:'/movimiento'})"/>
-            <Boton titulo="Historial" @click="$router.push({path:'/historial/'})"/>
+            <Boton titulo="atras" @click="$router.go(-1)"/>
         </div>
-        <Inventario/>
+        <Historial/>
     </main>
-    
 </template>
 
 <script>
-import Boton from '../components/Boton.vue';
-import Inventario from '../components/InventarioProductos.vue';
+import Boton from "../components/Boton.vue"
+import Historial from "../components/HistorialMovimientos.vue"
 
-export default{
+export default {
     components:{
         Boton,
-        Inventario
+        Historial
     },
     data(){
         return{
-
+            id:this.$route.params.id
         }
     }
 }
-
 </script>
 
 <style lang="scss" scoped>
@@ -33,4 +29,5 @@ export default{
 @import "../scss/_normalize.scss";
 @import "../scss/_globales.scss";
 @import "../scss/_mixins.scss";
+
 </style>

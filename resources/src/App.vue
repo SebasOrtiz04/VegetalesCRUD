@@ -1,7 +1,7 @@
 <template>
     <nav class="nav">
     <router-link to="/">Productos</router-link>
-    <router-link to="/admin">Historial</router-link>
+    <router-link to="/historial">Historial</router-link>
     <router-link to="/admin">Administrador</router-link>
     </nav>
     <router-view/>

@@ -2,7 +2,7 @@
 
     <div class="contenedor-boton">
         <div class="contenido">
-            <a href="/">{{ titulo }}</a>
+            <a>{{ titulo }}</a>
         </div>
     </div>
 
