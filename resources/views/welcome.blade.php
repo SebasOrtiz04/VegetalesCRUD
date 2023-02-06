@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="stylesheet" href="../css/normalize.css">
         <title>Prueba Leonali</title>
     </head>
-    <body class="antialiased">
+    <body style="margin: 0">
         <main id="app">
 
         </main>
