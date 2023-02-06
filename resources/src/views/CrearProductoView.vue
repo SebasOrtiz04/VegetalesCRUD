@@ -2,19 +2,18 @@
     <main class="main">
         <div class="botones">
             <Boton titulo="atras" @click="$router.go(-1)"/>
-            <Boton titulo="añadir" @click="$router.push({path:'/admin/crear'})"/>
         </div>
-        <Tabla/>
+        <Formulario/>
     </main>
 </template>
 
 <script>
 import Boton from "../components/Boton.vue"
-import Tabla from "../components/TablaProductos.vue"
+import Formulario from "../components/FormularioProducto.vue"
 export default {
     components:{
         Boton,
-        Tabla
+        Formulario
     }
 }
 </script>

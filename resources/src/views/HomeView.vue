@@ -3,7 +3,7 @@
     <main class="main">
         <div class="botones">
             <Boton titulo="Nueva entrada" @click="$router.push({path:'/movimiento'})"/>
-            <Boton titulo="Historial" @click="$router.push({path:'/historial/'})"/>
+            <Boton titulo="Historial" @click="$router.push({path:'/historial'})"/>
         </div>
         <Inventario/>
     </main>
