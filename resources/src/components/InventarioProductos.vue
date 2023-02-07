@@ -2,21 +2,17 @@
     <section>
         <div class="titulo">
             <h2>Inventario</h2>
-            <div>
-                <label for="buscar">
-                    <img class="lupa" src="../assets/lupa.png" alt="buscar">
-                </label>
-                <input type="text" id="buscar">
-            </div>
         </div>
 
-        <table>
+        <Loader v-if="loader"/>
+
+        <table v-if="tabla">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
                     <th>Disponible</th>
-                    <th>Unidades</th>
+                    <th>Unidad de medida</th>
                     <th>Más</th>
                 </tr>
             </thead>
@@ -46,48 +42,32 @@
 <script>
 
 import Boton from "../components/Boton.vue"
+import Loader from "../components/Loader.vue"
 
 export default {
     components:{
-        Boton
+        Boton,
+        Loader
     },
     data(){
         return{
-            productos:[
-                {
-                    id:0,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                },
-                {
-                    id:1,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                },
-                {
-                    id:2,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                },
-                {
-                    id:3,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                }
-            ]
+            loader:true,
+            tabla:false,
+            productos:[]
         }
+    },
+    methods:{
+        peticion(){
+            const respuesta = axios.get('http://localhost:8000/api/productos/join');
+            respuesta.then(respuesta=>{
+                this.productos = respuesta.data.lista;
+                this.loader=false;
+                this.tabla=true;
+            })
+        }
+    },
+    beforeMount(){
+        this.peticion();
     }
 }
 </script>

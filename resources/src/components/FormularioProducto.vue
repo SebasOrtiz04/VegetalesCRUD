@@ -162,12 +162,4 @@ h1{
     }
 }
 
-.error{
-    text-align:right;
-    text-transform:uppercase;
-    padding: .2rem;
-    margin:0;
-    color:red;
-}
-
 </style>

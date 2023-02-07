@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Movimiento extends Model
+class Tipo extends Model
 {
     use HasFactory;
 
     protected $fillable=[
-        'cantidad',
-        'producto_id',
-        'tipo_id'
+        'tipo'
     ];
 }

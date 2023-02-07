@@ -11,6 +11,10 @@ const routes = [
         component: Home
     },
     {
+        path: '/:mensaje',
+        component: Home
+    },
+    {
         path: '/historial',
         component: Historial
     },

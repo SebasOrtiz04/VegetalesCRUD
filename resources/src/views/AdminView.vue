@@ -37,13 +37,4 @@ export default {
 @import "../scss/_globales.scss";
 @import "../scss/_mixins.scss";
 
-
-.msg{
-    background-color: $verde;
-    color:$blanco;
-    padding: .5rem;
-    text-align:center;
-    text-transform:uppercase;
-    font-weight:700;
-}
 </style>

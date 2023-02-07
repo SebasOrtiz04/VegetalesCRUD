@@ -7,6 +7,7 @@ use App\Http\Requests\GuardarProductoRequest;
 use App\Http\Requests\ActualizarProductoRequest;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 {
@@ -18,6 +19,31 @@ class ProductoController extends Controller
     public function index()
     {
         return Producto::all();
+    }
+
+    public function join()
+    {
+        $resultado = DB::table('unidades')
+        ->join('productos','unidades.id','=','productos.unidad_id')
+        ->select()
+        ->get();
+        return response()->json([
+            'res' => true,
+            'lista' => $resultado
+        ]);
+    }
+
+    public function filterJoin($id)
+    {
+        $resultado = DB::table('unidades')
+        ->join('productos','unidades.id','=','productos.unidad_id')
+        ->select()
+        ->where('productos.id','=',$id)
+        ->get();
+        return response()->json([
+            'res' => true,
+            'lista' => $resultado
+        ]);
     }
 
     /**

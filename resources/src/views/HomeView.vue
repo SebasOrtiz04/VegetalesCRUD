@@ -5,6 +5,13 @@
             <Boton titulo="Nueva entrada" @click="$router.push({path:'/movimiento'})"/>
             <Boton titulo="Historial" @click="$router.push({path:'/historial'})"/>
         </div>
+        
+        <p 
+        class="msg"
+        v-if="mensaje">
+        {{ $route.params.mensaje }}
+        </p>
+
         <Inventario/>
     </main>
     
@@ -21,8 +28,11 @@ export default{
     },
     data(){
         return{
-
+            mensaje:false
         }
+    },
+    beforeMount(){
+        if(this.$route.params.mensaje) this.mensaje = true;
     }
 }
 

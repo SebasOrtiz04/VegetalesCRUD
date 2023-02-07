@@ -108,6 +108,21 @@ table{
 
 }
 
+.error{
+  text-align:right;
+  text-transform:uppercase;
+  padding: .2rem;
+  margin:0;
+  color:red;
+}
+.msg{
+  background-color: $verde;
+  color:$blanco;
+  padding: .5rem;
+  text-align:center;
+  text-transform:uppercase;
+  font-weight:700;
+}
 @keyframes entradaDifuminado{
   from{
     opacity: 0;

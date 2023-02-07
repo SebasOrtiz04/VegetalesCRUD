@@ -2,15 +2,11 @@
     <section>
         <div class="titulo">
             <h2>Productos</h2>
-            <div>
-                <label for="buscar">
-                    <img class="lupa" src="../assets/lupa.png" alt="buscar">
-                </label>
-                <input type="text" id="buscar">
-            </div>
         </div>
 
-        <table>
+        <Loader v-if="loader"/>
+
+        <table v-if="tabla">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -56,14 +52,18 @@
 <script>
 
 import Boton from "../components/Boton.vue";
+import Loader from "../components/Loader.vue";
 import axios from "axios";
 
 export default {
     components:{
-        Boton
+        Boton,
+        Loader
     },
     data(){
         return{
+            loader:true,
+            tabla:false,
             productos:[]
         }
     },
@@ -71,12 +71,11 @@ export default {
     methods:{
         peticion(){
             this.productos=[];
-            const respuesta = axios.get('http://localhost:8000/api/productos');
+            const respuesta = axios.get('http://localhost:8000/api/productos/join');
 
             respuesta.then((data)=>{
-                this.productos=data.data;
+                this.productos=data.data.lista;
                 this.configurarDate();
-                this.getUnidad();
             })
             .catch(e=>{
                 console.log(e)
@@ -85,15 +84,9 @@ export default {
         configurarDate(){
             this.productos.forEach(producto=>{
                     producto.fecha = new Date(producto.updated_at);
-                });
-        },
-        getUnidad(){
-            this.productos.forEach(producto=>{
-                    const respuesta = axios.get('http://localhost:8000/api/unidad/'+producto.unidad_id);
-                    respuesta.then(respuesta=>{
-                        producto.unidad = respuesta.data.unidad.unidad;
-                    });
-                });
+            });
+            this.loader = false;
+            this.tabla = true;
         },
         eliminar(id){
             const respuesta = axios.delete('http://localhost:8000/api/producto/' + id);
@@ -107,7 +100,6 @@ export default {
     },
 
     beforeMount(){
-
         this.peticion();
     }
 }

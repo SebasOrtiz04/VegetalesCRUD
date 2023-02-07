@@ -7,8 +7,9 @@
             <router-link to="/admin">Administrador</router-link>
         </nav>
     </header>
-
-    <router-view/>
+    <div class="vista">
+        <router-view/>
+    </div>
 
     <footer>
         <p>Todos los derechos reservados Sebastian Ortiz &copy;</p>
@@ -52,6 +53,10 @@ html {
             color: $verde;
         }
     }
+}
+
+.vista{
+    min-height:80vh;
 }
 
 footer{
