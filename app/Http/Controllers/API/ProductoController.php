@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardarProductoRequest;
 use App\Http\Requests\ActualizarProductoRequest;
-use App\Models\producto;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -38,7 +38,7 @@ class ProductoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Producto  $producto
      * @return \Illuminate\Http\Response
      */
     public function show(Producto $producto)
@@ -47,6 +47,18 @@ class ProductoController extends Controller
             'res'=>true,
             'producto'=>$producto
         ],200);
+    }
+
+    /**
+     * 
+     */
+    public function findNombre($nombre)
+    {
+        $producto = Producto::where('nombre','=',$nombre)->firstOrFail();
+        return response()->json([
+            'res'=>true,
+            'producto'=> $producto
+        ]);
     }
 
     /**

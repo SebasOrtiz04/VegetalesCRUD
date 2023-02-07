@@ -1,7 +1,7 @@
 <template>
     <section>
         <div class="titulo">
-            <h2>Inventario</h2>
+            <h2>Productos</h2>
             <div>
                 <label for="buscar">
                     <img class="lupa" src="../assets/lupa.png" alt="buscar">
@@ -31,11 +31,18 @@
                     <td>{{ producto.descripcion}}</td>
                     <td>{{ producto.cantidad}}</td>
                     <td>{{ producto.unidad}}</td>
-                    <td>{{ producto.fecha}}</td>
+                    <td>{{ 
+                            producto.fecha.getDate() +'/' +
+                            (producto.fecha.getMonth()+1) +'/' +
+                            producto.fecha.getFullYear() +' '+
+                            producto.fecha.getHours() + ':'+
+                            producto.fecha.getMinutes()
+                        }}</td>
                     <td>
                         <Boton titulo="Editar" 
                         @click="$router.push({path:'/admin/editar/'+producto.id})"/>
                         <Boton titulo="Eliminar"
+                        @click="eliminar(producto.id)"
                         v-if="producto.cantidad===0"/>
                     </td>
                 </tr>
@@ -48,7 +55,8 @@
 
 <script>
 
-import Boton from "../components/Boton.vue"
+import Boton from "../components/Boton.vue";
+import axios from "axios";
 
 export default {
     components:{
@@ -56,41 +64,51 @@ export default {
     },
     data(){
         return{
-            productos:[
-                {
-                    id:0,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:0,
-                    unidad:'kg'
-                },
-                {
-                    id:1,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                },
-                {
-                    id:2,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                },
-                {
-                    id:3,
-                    nombre:'Lechuga',
-                    descripcion:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut tortor pellentesque, sodales massa a, pharetra nisi. In nibh lorem, maximus non risus vitae, accumsan efficitur eros.',
-                    fecha:'00-00-00',
-                    cantidad:1111,
-                    unidad:'kg'
-                }
-            ]
+            productos:[]
         }
+    },
+
+    methods:{
+        peticion(){
+            this.productos=[];
+            const respuesta = axios.get('http://localhost:8000/api/productos');
+
+            respuesta.then((data)=>{
+                this.productos=data.data;
+                this.configurarDate();
+                this.getUnidad();
+            })
+            .catch(e=>{
+                console.log(e)
+            });
+        },
+        configurarDate(){
+            this.productos.forEach(producto=>{
+                    producto.fecha = new Date(producto.updated_at);
+                });
+        },
+        getUnidad(){
+            this.productos.forEach(producto=>{
+                    const respuesta = axios.get('http://localhost:8000/api/unidad/'+producto.unidad_id);
+                    respuesta.then(respuesta=>{
+                        producto.unidad = respuesta.data.unidad.unidad;
+                    });
+                });
+        },
+        eliminar(id){
+            const respuesta = axios.delete('http://localhost:8000/api/producto/' + id);
+            respuesta.then(respuesta =>{
+                if(respuesta.data.res) {
+                    this.peticion();
+                    this.$router.push({path:'/admin/Producto eliminado'});
+                }
+            });
+        }
+    },
+
+    beforeMount(){
+
+        this.peticion();
     }
 }
 </script>

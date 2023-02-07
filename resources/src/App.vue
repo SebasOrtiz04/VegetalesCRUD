@@ -2,7 +2,7 @@
 
     <header>
         <nav class="nav">
-            <router-link to="/">Productos</router-link>
+            <router-link to="/">Inventario</router-link>
             <router-link to="/historial">Historial</router-link>
             <router-link to="/admin">Administrador</router-link>
         </nav>

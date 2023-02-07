@@ -4,6 +4,7 @@
             <Boton titulo="atras" @click="$router.go(-1)"/>
             <Boton titulo="añadir" @click="$router.push({path:'/admin/crear'})"/>
         </div>
+        <p v-if="msg" class="msg">{{ $route.params.msg }}</p>
         <Tabla/>
     </main>
 </template>
@@ -15,6 +16,17 @@ export default {
     components:{
         Boton,
         Tabla
+    },
+    props:['msg'],
+    data(){
+        return{
+            msg:false
+        }
+    },
+    beforeMount(){
+        if(this.$route.params.msg){
+            this.msg=true;
+        }
     }
 }
 </script>
@@ -25,4 +37,13 @@ export default {
 @import "../scss/_globales.scss";
 @import "../scss/_mixins.scss";
 
+
+.msg{
+    background-color: $verde;
+    color:$blanco;
+    padding: .5rem;
+    text-align:center;
+    text-transform:uppercase;
+    font-weight:700;
+}
 </style>

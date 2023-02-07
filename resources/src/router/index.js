@@ -23,6 +23,10 @@ const routes = [
         component: Admin,
     },
     {
+        path: '/admin/:msg',
+        component: Admin,
+    },
+    {
         path: '/admin/crear',
         component: Crear
     },

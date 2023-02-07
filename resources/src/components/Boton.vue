@@ -47,7 +47,7 @@ export default{
     top:-18.5rem;
     left:-12rem;
     position:absolute;
-    background-image:conic-gradient($verde,$blanco,$azul,$blanco);
+    background-image:conic-gradient($verde,$azul);
     width:40rem;
     height: 40rem;
     transition: all 2s ease;
